@@ -9,7 +9,6 @@
 	    'DB_PWD'=>'root',
 	    'DB_PREFIX'=>'syb_',
 	    'DEFAULT_C_LAYER' =>  'Action',
-	    //'DEFAULT_CITY' => '420600',
 	    'DATA_CACHE_SUBDIR'=>true,
         'DATA_PATH_LEVEL'=>2, 
 	    'SESSION_PREFIX' => 'SYB',

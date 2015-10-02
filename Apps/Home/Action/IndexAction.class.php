@@ -1,71 +1,8 @@
 <?php
 namespace Home\Action;
-
- header("Location:admin.php");
-/**
- * ============================================================================
- * 首页控制器
- * ============================================================================
- */
-class IndexAction extends BaseAction {
-	/**
-	 * 获取首页信息
-	 * 
-	 */
+use Think\Action;
+class IndexAction extends Action {
     public function index(){
-    	self::getBaseInfo();
-   		$ads = D('Home/Ads');
-
-   		$areaId2 = $this->getDefaultCity();
-
-   		//首页主广告
-   		$indexAds = $ads->getAds($areaId2,-1);
-   		$this->assign('indexAds',$indexAds);
-   		//分类广告
-   		$catAds = $ads->getAdsByCat($areaId2);
-   		$this->assign('catAds',$catAds);
-   		if(I("changeCity")){
-   			echo $_SERVER['HTTP_REFERER'];
-   		}else{
-   			$this->display("default/index");
-   		}
-		
-    }
-    /**
-     * 广告记数
-     */
-    public function access(){
-    	$ads = D('Home/Ads');
-    	$ads->statistics(I('id'));
-    	header("Location: ".I('url')); 
-    }
-    /**
-     * 切换城市
-     */
-    public function changeCity(){
-    	self::getBaseInfo();
-    	$m = D('Home/Areas');
-    	$areaId2 = $this->getDefaultCity();
-    	$provinceList = $m->getProvinceList();
-    	$cityList = $m->getCityGroupByKey();
-    	$area = $m->getArea($areaId2);
-    	$this->assign('provinceList',$provinceList);
-    	$this->assign('cityList',$cityList);
-    	$this->assign('area',$area);
-    	$this->assign('areaId2',$areaId2);
-    	$this->display("default/change_city");
-    }
-    /**
-     * 跳到用户注册协议
-     */
-    public function toUserProtocol(){
-    	$this->display("default/user_protocol");
-    }
-    
-    /**
-     * 修改切换城市ID
-     */
-    public function reChangeCity(){
-    	$this->getDefaultCity();
+        $this->show('<style type="text/css">*{ padding: 0; margin: 0; } div{ padding: 4px 48px;} body{ background: #fff; font-family: "微软雅黑"; color: #333;font-size:24px} h1{ font-size: 100px; font-weight: normal; margin-bottom: 12px; } p{ line-height: 1.8em; font-size: 36px }</style><div style="padding: 24px 48px;"> <h1>:)</h1><p>欢迎使用 <b>ThinkPHP</b>！</p><br/>[ 您现在访问的是Home模块的Index控制器 ]</div><script type="text/javascript" src="http://tajs.qq.com/stats?sId=9347272" charset="UTF-8"></script>','utf-8');
     }
 }
